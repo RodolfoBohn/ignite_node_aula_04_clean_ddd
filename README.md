@@ -10,7 +10,7 @@ Design dirigido à domínio
   - Atendente
   - Barman
 - Agregados
-- Value Objects
+- Value Objects => propriedades que possuem regras de negócio associadas (formatações, validações etc, ex: slug da question)
 - Eventos de domínio
 - Subdomínios (Bounded Contexts)
 - Entidades
