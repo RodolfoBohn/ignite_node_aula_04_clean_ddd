@@ -1,6 +1,5 @@
-import {describe, expect, it} from 'vitest'
-import { Slug } from './slug';
-
+import { describe, expect, it } from 'vitest'
+import { Slug } from './slug'
 
 describe('Entities: Value Objects : Slug', () => {
   it('should be able to create a new slug from text', () => {

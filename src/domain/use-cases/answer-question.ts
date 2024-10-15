@@ -1,6 +1,6 @@
-import { UniqueEntityID } from "../../core/entities/value-objects/unique-entity-id"
-import { Answer } from "../entities/answer"
-import { AnswerRepository } from "../repositories/answer-repository"
+import { UniqueEntityID } from '../../core/entities/value-objects/unique-entity-id'
+import { Answer } from '../entities/answer'
+import { AnswerRepository } from '../repositories/answer-repository'
 
 interface IAnswerQuestionRequest {
   questionId: string
@@ -9,12 +9,11 @@ interface IAnswerQuestionRequest {
 }
 
 export class AnswerQuestion {
-
   constructor(private answerRepository: AnswerRepository) {}
 
-  async execute({content, instructorId, questionId}: IAnswerQuestionRequest) {
+  async execute({ content, instructorId, questionId }: IAnswerQuestionRequest) {
     const answer = Answer.create({
-      content, 
+      content,
       authorId: new UniqueEntityID(instructorId),
       questionId: new UniqueEntityID(questionId),
     })
