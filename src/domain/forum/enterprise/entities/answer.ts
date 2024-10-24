@@ -1,8 +1,8 @@
-import { Entity } from '../../core/entities/entity'
+import { Entity } from '../../../../core/entities/entity'
 import { UniqueEntityID } from '@/core/entities/value-objects/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 
-interface IAnswerProps {
+export interface IAnswerProps {
   questionId: UniqueEntityID
   authorId: UniqueEntityID
   content: string
@@ -39,6 +39,7 @@ export class Answer extends Entity<IAnswerProps> {
     this.props.updatedAt = new Date()
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   set content(content: string) {
     this.props.content = content
     this.touch()
@@ -51,7 +52,7 @@ export class Answer extends Entity<IAnswerProps> {
     const answer = new Answer(
       {
         ...props,
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )

@@ -4,7 +4,7 @@ import { UniqueEntityID } from '@/core/entities/value-objects/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 import dayjs from 'dayjs'
 
-interface IQuestionProps {
+export interface IQuestionProps {
   authorId: UniqueEntityID
   bestAnswerId?: UniqueEntityID
   title: string
@@ -55,17 +55,20 @@ export class Question extends Entity<IQuestionProps> {
     this.props.updatedAt = new Date()
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   set title(title: string) {
     this.props.title = title
     this.props.slug = Slug.createFromText(title)
     this.touch()
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   set content(content: string) {
     this.props.content = content
     this.touch()
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   set bestAnswerId(bestAnswerId: UniqueEntityID | undefined) {
     this.props.bestAnswerId = bestAnswerId
     this.touch()
@@ -79,7 +82,7 @@ export class Question extends Entity<IQuestionProps> {
       {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.title),
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
       id,
     )
