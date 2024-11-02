@@ -1,11 +1,13 @@
 import { Entity } from '../../../../core/entities/entity'
 import { UniqueEntityID } from '@/core/entities/value-objects/unique-entity-id'
 import { Optional } from '@/core/types/optional'
+import { AnswerAttachmentList } from './answer-attachment-list'
 
 export interface IAnswerProps {
   questionId: UniqueEntityID
   authorId: UniqueEntityID
   content: string
+  attachments: AnswerAttachmentList
   createdAt: Date
   updatedAt?: Date
 }
@@ -21,6 +23,10 @@ export class Answer extends Entity<IAnswerProps> {
 
   get content() {
     return this.props.content
+  }
+
+  get attachments() {
+    return this.props.attachments
   }
 
   get createdAt() {
@@ -45,14 +51,21 @@ export class Answer extends Entity<IAnswerProps> {
     this.touch()
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
+  set attachments(attachments: AnswerAttachmentList) {
+    this.props.attachments = attachments
+    this.touch()
+  }
+
   static create(
-    props: Optional<IAnswerProps, 'createdAt'>,
+    props: Optional<IAnswerProps, 'createdAt' | 'attachments'>,
     id?: UniqueEntityID,
   ) {
     const answer = new Answer(
       {
         ...props,
         createdAt: props.createdAt ?? new Date(),
+        attachments: props.attachments ?? new AnswerAttachmentList(),
       },
       id,
     )

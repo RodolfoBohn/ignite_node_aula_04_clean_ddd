@@ -9,7 +9,7 @@ Design dirigido à domínio
   - Fornecedor
   - Atendente
   - Barman
-- Agregados
+- Agregados (duas ou mais entidades manipuladas simultaneamente)
 - Value Objects => propriedades que possuem regras de negócio associadas (formatações, validações etc, ex: slug da question)
 - Eventos de domínio
 - Subdomínios (Bounded Contexts)
